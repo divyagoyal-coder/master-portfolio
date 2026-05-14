@@ -1,0 +1,511 @@
+/* ===== RESET ALL BROWSERS TO SAME STATE ===== */
+*{
+    margin: 0;      /* Remove default space OUTSIDE */
+    padding: 0;     /* Remove default space INSIDE */
+    box-sizing: border-box;  /* Include borders in width/height */
+}
+
+body{
+    overflow: hidden;  /* Hide scrollbars */
+    font-family: 'Press Start 2P', cursive;  /* Game font */
+    background: #5c94fc;  /* Light blue background */
+}
+
+
+/* ===== Task -1 : MAIN GAME CONTAINER ===== */
+#world{
+    position: ________;           /* HINT: How to position element */
+    width: 8500px;               /* How wide (for scrolling) */
+    height: 100vh;               /* How tall (full screen height) */
+    overflow: hidden;            /* Hide things outside edges */
+    background: 
+    linear-gradient(
+        to ________,             /* HINT: Direction (top/bottom/left/right) */
+        ________ 0%,             /* HINT: Sky color at top */
+        #87ceeb 60%,             /* Light blue sky */
+        #3cb043 60%,             /* Green ground */
+        #3cb043 100%             /* Green ground */
+    );
+}
+
+/* ===== Task - 2 : GLOWING SUN ===== */
+.sun{
+    position: ________;          /* HINT: absolute/relative */
+    width: 140px;                /* Width of sun */
+    height: 140px;               /* Height of sun (same = circle) */
+    background: ________;        /* HINT: Color name or hex */
+    border-radius: 50%;          /* Makes square into circle */
+    top: 50px;                   /* Distance from TOP */
+    right: 300px;                /* Distance from RIGHT */
+    box-shadow: 0 0 100px ________;  /* HINT: Glow color */
+    animation: sunPulse 3s infinite alternate;  /* Animation name */
+}
+
+/* HOW TO ANIMATE: Keyframes define what changes */
+@keyframes sunPulse{
+    from{
+        transform: scale(1);     /* Start size: normal (1) */
+    }
+    to{
+        transform: scale(1.1);   /* End size: 10% bigger */
+    }
+}
+
+/* ===== Task - 3 : BASIC CLOUD SHAPE ===== */
+.cloud{
+    position: ________;           /* HINT: absolute/relative */
+    width: 200px;                 /* Width of cloud */
+    height: 60px;                 /* Height of cloud */
+    background: ________;         /* HINT: What color */
+    border-radius: 100px;         /* Make it puffy/rounded */
+    opacity: .95;                 /* Make slightly transparent */
+}
+
+/* CREATE BUMPY CLOUD EFFECT WITH ::before & ::after */
+.cloud::before,
+.cloud::after{
+    content: '';                  /* Create fake elements */
+    position: ________;           /* HINT: absolute/relative */
+    background: ________;         /* HINT: Same as cloud color */
+    border-radius: 50%;           /* Make circles */
+}
+
+.cloud::before{
+    width: 90px;
+    height: 90px;
+    top: -30px;                   /* Move UP */
+    left: 20px;                   /* Move RIGHT */
+}
+
+.cloud::after{
+    width: 110px;
+    height: 110px;
+    top: -45px;                   /* Move UP MORE */
+    right: 20px;                  /* Move LEFT */
+}
+
+/* POSITION CLOUD 1 */
+.cloud1{
+    top: 100px;
+    left: 200px;
+    animation: floatCloud 25s linear infinite;  /* Slow float */
+}
+
+/* POSITION CLOUD 2 */
+.cloud2{
+    top: 180px;
+    left: 1600px;
+    animation: floatCloud 35s linear infinite;  /* Different speed */
+}
+
+/* POSITION CLOUD 3 */
+.cloud3{
+    top: 80px;
+    left: 3500px;
+    animation: floatCloud 30s linear infinite;
+}
+
+/* MAKE CLOUDS FLOAT LEFT */
+@keyframes floatCloud{
+    from{
+        transform: translateX(0);      /* Start position */
+    }
+    to{
+        transform: translateX(-800px);  /* Move 800px LEFT */
+    }
+}
+
+
+/* ===== Task 4 : MOUNTAIN USING BORDERS ===== */
+.mountain{
+    position: ________;              /* HINT: absolute/relative */
+    bottom: 120px;                   /* Position from BOTTOM */
+    width: 0;                        /* Start with 0 width */
+    height: 0;                       /* Start with 0 height */
+    
+    /* TRICK: Use borders to create triangle */
+    border-left: 250px solid ________;        /* HINT: transparent */
+    border-right: 250px solid ________;       /* HINT: transparent */
+    border-bottom: 400px solid ________;      /* HINT: Mountain color */
+    
+    filter: brightness(.9);          /* Make slightly darker */
+}
+
+/* ===== Task - 5 : GROUND WITH REPEATING PATTERN ===== */
+.ground{
+    position: ________;               /* HINT: absolute/relative */
+    bottom: 0;                        /* Stick to BOTTOM */
+    width: 8500px;                    /* Match world width */
+    height: 120px;                    /* How tall */
+    background: 
+    repeating-linear-gradient(
+        90deg,                        /* Horizontal direction */
+        ________ 0px,                 /* HINT: First stripe color */
+        ________ 60px,                /* HINT: First stripe width */
+        #7a3d00 60px,                 /* Second stripe color */
+        ________ 120px                /* HINT: Pattern repeat width */
+    );
+    border-top: 8px solid ________;   /* HINT: Border color */
+}
+
+/* ===== Task - 6 : PLAYER CONTAINER ===== */
+#player{
+    position: ________;               /* HINT: absolute/relative */
+    width: 70px;
+    height: 100px;
+    left: 100px;                      /* Distance from LEFT */
+    bottom: 120px;                    /* Distance from BOTTOM */
+    z-index: 100;                     /* Layer above other things */
+    transition: transform .1s;        /* Smooth movement */
+}
+
+/* ===== CAP (RED TOP) ===== */
+.cap{
+    width: 70px;
+    height: 20px;
+    background: ________;              /* HINT: Cap color */
+    border: 4px solid ________;        /* HINT: Border color */
+    position: ________;                /* HINT: absolute/relative */
+}
+
+/* ===== FACE (SKIN COLOR) ===== */
+.face{
+    width: 50px;
+    height: 40px;
+    background: ________;              /* HINT: Skin color (peachy) */
+    border: 4px solid ________;        /* HINT: Border color */
+    position: ________;                /* HINT: absolute/relative */
+    top: 18px;                        /* Position below cap */
+    left: 10px;                       /* Center on body */
+}
+
+/* ===== BODY (RED SHIRT) ===== */
+.body{
+    width: 55px;
+    height: 35px;
+    background: ________;              /* HINT: Body color */
+    border: 4px solid ________;        /* HINT: Border color */
+    position: ________;                /* HINT: absolute/relative */
+    top: 55px;                        /* Position below face */
+    left: 7px;                        /* Center on player */
+}
+
+/* ===== LEGS (BLUE PANTS) ===== */
+.legs{
+    width: 55px;
+    height: 25px;
+    background: ________;              /* HINT: Leg color (blue) */
+    border: 4px solid ________;        /* HINT: Border color */
+    position: ________;                /* HINT: absolute/relative */
+    top: 85px;                        /* Position below body */
+    left: 7px;                        /* Center on player */
+}
+
+/* ===== WALKING ANIMATION ===== */
+.walk .legs{
+    animation: walk .2s infinite alternate;  /* Wiggle legs */
+}
+
+@keyframes walk{
+    from{
+        transform: translateX(-3px);   /* Wiggle LEFT */
+    }
+    to{
+        transform: translateX(3px);    /* Wiggle RIGHT */
+    }
+}
+
+/* ===== Task - 7 : INFO PANELS ===== */
+.panel{
+    position: ________;               /* HINT: absolute/relative */
+    width: 550px;
+    background: ________;             /* HINT: Card background color */
+    border: 8px solid ________;       /* HINT: Border color */
+    padding: 40px;                   /* Space INSIDE card */
+    box-shadow: 15px 15px ________;  /* HINT: Shadow color */
+    transition: .4s;                 /* Smooth hover animation */
+}
+
+/* ===== WHEN MOUSE HOVERS ON CARD ===== */
+.panel:hover{
+    transform: 
+    translateY(-10px)                /* Move UP 10px */
+    rotateY(-5deg)                   /* Tilt slightly */
+    scale(1.03);                     /* Grow 3% bigger */
+}
+
+/* ===== PANEL HEADING ===== */
+.panel h1{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* ===== PANEL TEXT ===== */
+.panel p{
+    font-size: 11px;
+    line-height: 2;                  /* Double spacing between lines */
+}
+
+/* ===== SKILLS SECTION ===== */
+.skills{
+    display: ________;               /* HINT: flex/grid */
+    flex-wrap: wrap;                 /* Stack on new line if needed */
+    gap: 15px;                       /* Space between skills */
+    margin-top: 25px;
+}
+
+/* ===== INDIVIDUAL SKILL TAG ===== */
+.skill{
+    background: ________;             /* HINT: Skill tag color */
+    padding: 15px;
+    border: 4px solid ________;       /* HINT: Border color */
+    transition: .2s;
+}
+
+/* ===== SKILL HOVER EFFECT ===== */
+.skill:hover{
+    transform: scale(1.15) rotate(-3deg);  /* Grow & tilt */
+}
+
+/* ===== PROJECTS ===== */
+.project{
+    margin-top: 20px;
+    padding: 20px;
+    background: ________;             /* HINT: Project background */
+    color: ________;                  /* HINT: Text color */
+    border: 4px solid ________;       /* HINT: Border color */
+    transition: .3s;
+}
+
+/* ===== PROJECT HOVER EFFECT ===== */
+.project:hover{
+    transform: 
+    translateX(10px)                 /* Slide RIGHT */
+    scale(1.05);                     /* Grow 5% */
+}
+
+/* ===== Task- 8 : GOLDEN COINS ===== */
+.coin{
+    width: 35px;
+    height: 35px;
+    border-radius: ________;         /* HINT: Make circle */
+    background: ________;             /* HINT: Coin color */
+    border: 5px solid ________;      /* HINT: Border color */
+    position: ________;               /* HINT: absolute/relative */
+    animation: coinSpin .5s infinite alternate;  /* Spin animation */
+}
+
+/* ===== COIN SPINNING EFFECT ===== */
+@keyframes coinSpin{
+    from{
+        transform: rotateY(0deg);    /* Face forward */
+    }
+    to{
+        transform: rotateY(180deg);  /* Spin 180 degrees */
+    }
+}
+
+/* ===== Task - 9 : ENEMY CIRCLES ===== */
+.enemy{
+    width: 60px;
+    height: 60px;
+    background: ________;             /* HINT: Enemy color */
+    border-radius: ________;          /* HINT: Make circle */
+    border: 5px solid ________;      /* HINT: Border color */
+    position: ________;               /* HINT: absolute/relative */
+    animation: enemyMove 1s infinite alternate;  /* Wobble animation */
+}
+
+/* ===== ENEMY MOVEMENT ===== */
+@keyframes enemyMove{
+    from{
+        transform: translateX(-40px); /* Move LEFT 40px */
+    }
+    to{
+        transform: translateX(40px);  /* Move RIGHT 40px */
+    }
+}
+
+/* ===== Task - 10 : FLOATING BLOCKS ===== */
+.block{
+    position: ________;               /* HINT: absolute/relative */
+    width: 80px;
+    height: 80px;
+    background: ________;             /* HINT: Block color */
+    border: 5px solid ________;      /* HINT: Border color */
+    animation: blockFloat 2s infinite ease-in-out;  /* Bounce up/down */
+}
+
+/* ===== BLOCK FLOATING ANIMATION ===== */
+@keyframes blockFloat{
+    0%, 100%{
+        transform: translateY(0px);   /* Position: normal */
+    }
+    50%{
+        transform: translateY(-15px); /* Move UP 15px at middle */
+    }
+}
+
+/* ===== Task - 11 : FLAG POLE ===== */
+#flag{
+    position: ________;               /* HINT: absolute/relative */
+    right: 300px;                    /* Position from RIGHT */
+    bottom: 120px;                   /* Position from BOTTOM */
+    width: 15px;                     /* Thin pole */
+    height: 350px;                   /* Tall pole */
+    background: ________;             /* HINT: Pole color */
+}
+
+/* ===== FLAG CLOTH (WAVING) ===== */
+.flag-top{
+    width: 120px;
+    height: 80px;
+    background: ________;             /* HINT: Flag color */
+    position: ________;               /* HINT: absolute/relative */
+    left: 15px;                      /* Attach to pole */
+    top: 0;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);  /* Triangle shape */
+    animation: flagWave 1s infinite alternate;  /* Wave animation */
+}
+
+/* ===== FLAG WAVING EFFECT ===== */
+@keyframes flagWave{
+    from{
+        transform: skewY(0deg);      /* Straight */
+    }
+    to{
+        transform: skewY(5deg);      /* Wave/tilt */
+    }
+}
+
+/* ===== Task 12 : FLOATING UI (Score Display) ===== */
+#ui{
+    position: ________;               /* HINT: fixed (stays on screen) */
+    top: 20px;                       /* Distance from TOP */
+    left: 20px;                      /* Distance from LEFT */
+    z-index: 9999;                   /* Show on top */
+    color: ________;                 /* HINT: Text color */
+    text-shadow: 4px 4px ________;   /* HINT: Shadow color */
+    line-height: 2;                  /* Double line spacing */
+}
+
+/* ===== Task - 13 : START SCREEN BACKGROUND ===== */
+#start{
+    position: ________;               /* HINT: fixed (full screen) */
+    width: 100%;
+    height: 100%;
+    background: ________;             /* HINT: Color */
+    color: ________;                  /* HINT: Text color */
+    display: flex;                   /* Center content */
+    justify-content: center;         /* Center horizontally */
+    align-items: center;             /* Center vertically */
+    flex-direction: column;          /* Stack vertically */
+    z-index: 10000;                  /* Show above everything */
+    text-align: center;
+}
+
+/* ===== START SCREEN TITLE ===== */
+#start h1{
+    font-size: 50px;
+    line-height: 2;
+    animation: titleGlow 1s infinite alternate;  /* Glow animation */
+}
+
+/* ===== TITLE GLOW EFFECT ===== */
+@keyframes titleGlow{
+    from{
+        text-shadow: 0 0 10px ________;  /* HINT: Glow color at start */
+    }
+    to{
+        text-shadow: 0 0 30px ________;  /* HINT: Glow color at end */
+    }
+}
+
+/* ===== START BUTTON ===== */
+#start button{
+    margin-top: 40px;
+    padding: 25px 40px;
+    border: none;
+    background: ________;             /* HINT: Button color */
+    border: 6px solid ________;       /* HINT: Border color */
+    cursor: ________;                /* HINT: How cursor looks */
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* ===== Task - 14 : POPUP OVERLAY (Hidden) ===== */
+#contactPopup{
+    position: ________;               /* HINT: fixed (full screen) */
+    inset: 0;                        /* Cover entire screen */
+    background: rgba(0,0,0,.9);     /* Dark semi-transparent */
+    display: none;                   /* Hidden by default */
+    justify-content: center;         /* Center horizontally */
+    align-items: center;             /* Center vertically */
+    z-index: 99999;                  /* Show on top */
+}
+
+/* ===== POPUP BOX ===== */
+.popup-box{
+    width: 90%;
+    max-width: 700px;
+    background: ________;             /* HINT: Box background */
+    border: 10px solid ________;     /* HINT: Border color */
+    padding: 40px;
+    box-shadow: 15px 15px ________;  /* HINT: Shadow color */
+    text-align: center;
+}
+
+/* ===== POPUP HEADING ===== */
+.popup-box h1{
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* ===== POPUP TEXT ===== */
+.popup-box p{
+    font-size: 10px;
+    line-height: 2;
+    margin-bottom: 30px;
+}
+
+/* ===== INPUT FIELDS ===== */
+.popup-box input,
+.popup-box textarea{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 5px solid ________;     /* HINT: Border color */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+
+/* ===== TEXTAREA (MESSAGE BOX) ===== */
+.popup-box textarea{
+    height: 150px;
+    resize: none;                   /* Don't allow resize */
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.popup-box button{
+    padding: 20px 30px;
+    background: ________;             /* HINT: Button color */
+    border: 5px solid ________;      /* HINT: Border color */
+    cursor: ________;                /* HINT: Cursor style */
+    font-family: 'Press Start 2P', cursive;
+}
+
+.particle{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    border-radius: 50%;
+    pointer-events: none;            /* Don't block clicks */
+    animation: particle 1s forwards;  /* Play once */
+}
+
+@keyframes particle{
+    to{
+        transform: translateY(-100px) scale(0);  /* Float up & disappear */
+        opacity: 0;
+    }
+}
